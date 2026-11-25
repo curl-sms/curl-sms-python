@@ -239,6 +239,8 @@ See [`examples/`](examples/) for runnable scripts.
 
 - Website: <https://curl-sms.com>
 - Documentation: <https://curl-sms.com/docs>
+- Python SDK docs: <https://curl-sms.com/docs/python>
+- All integrations: <https://curl-sms.com/integrations>
 - API reference: <https://curl-sms.com/docs/api>
 - Pricing: <https://curl-sms.com/pricing>
 - Support: <help@curl-sms.com>
