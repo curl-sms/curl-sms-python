@@ -7,7 +7,7 @@ name = "curl-sms"
 dynamic = ["version"]
 description = "Official Python client for the curl-sms SMS API"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "curl-sms", email = "help@curl-sms.com" }]
@@ -20,11 +20,11 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Communications :: Telephony",
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Software Development :: Libraries :: Python Modules",
@@ -74,7 +74,7 @@ files = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py39"
+target-version = "py310"
 src = ["src", "tests"]
 
 [tool.ruff.lint]
@@ -82,10 +82,4 @@ select = ["E", "W", "F", "I", "B", "UP", "SIM", "RUF", "A", "C4", "PT"]
 ignore = [
     "A002",   # `id` parameters mirror the API
     "A003",   # `list` method mirrors the API
-    "UP006",  # typing.List in TypedDicts evaluated on Python 3.9
-    "UP035",
 ]
-
-[tool.ruff.lint.per-file-ignores]
-# Keep Optional[...] so typing.get_type_hints() works on Python 3.9.
-"src/curl_sms/types.py" = ["UP007", "UP045"]

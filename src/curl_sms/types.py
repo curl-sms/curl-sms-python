@@ -7,7 +7,7 @@ euros (for example ``"0.09"``), exactly as the API returns them.
 
 from __future__ import annotations
 
-from typing import List, Literal, Optional, TypedDict, Union
+from typing import Literal, TypedDict
 
 __all__ = [
     "Account",
@@ -99,19 +99,19 @@ class Message(TypedDict):
     segments: int
     encoding: Encoding
     price: str
-    error_code: Optional[str]
+    error_code: str | None
     created_at: str
-    send_at: Optional[str]
-    sent_at: Optional[str]
-    delivered_at: Optional[str]
+    send_at: str | None
+    sent_at: str | None
+    delivered_at: str | None
     refunded: bool
 
 
 class SendManyResponse(TypedDict):
     """Response of a send with ``receivers``."""
 
-    ids: List[str]
-    messages: List[Message]
+    ids: list[str]
+    messages: list[Message]
 
 
 class _EstimateRequired(TypedDict):
@@ -130,7 +130,7 @@ class Estimate(_EstimateRequired, total=False):
 class ListResponse(TypedDict):
     """A page of SMS. Pass ``next_cursor`` as ``since`` to get later changes."""
 
-    data: List[Message]
+    data: list[Message]
     next_cursor: str
 
 
@@ -244,11 +244,7 @@ class TestEvent(TypedDict):
     data: TestEventData
 
 
-WebhookEvent = Union[
-    StatusChangedEvent,
-    QuotaWarningEvent,
-    SpendLimitReachedEvent,
-    BalanceLowEvent,
-    TestEvent,
-]
+WebhookEvent = (
+    StatusChangedEvent | QuotaWarningEvent | SpendLimitReachedEvent | BalanceLowEvent | TestEvent
+)
 """A verified webhook event. Narrow on ``event["type"]`` to get typed ``data``."""

@@ -8,7 +8,7 @@
 Official Python client for the [curl-sms](https://curl-sms.com) SMS API: send an SMS with one line of Python.
 
 - Zero dependencies, standard library only
-- Fully typed (`py.typed`), Python 3.9+
+- Fully typed (`py.typed`), Python 3.10+
 - Safe automatic retries with idempotency keys
 - Webhook signature verification built in
 

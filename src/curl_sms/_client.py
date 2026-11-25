@@ -12,10 +12,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
+from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timezone
 from email.message import Message as _HeaderMap
 from email.utils import parsedate_to_datetime
-from typing import Any, Callable, Mapping, Sequence, Tuple, cast, overload
+from typing import Any, cast, overload
 
 from ._errors import CurlSMSError
 from ._version import __version__
@@ -38,7 +39,7 @@ MAX_RETRY_AFTER = 30.0
 _INITIAL_BACKOFF = 0.5
 _USER_AGENT = f"curl-sms-python/{__version__}"
 
-_RawResponse = Tuple[int, Mapping[str, str], bytes]
+_RawResponse = tuple[int, Mapping[str, str], bytes]
 
 
 class CurlSMS:
@@ -296,7 +297,7 @@ class CurlSMS:
             raise CurlSMSError(
                 f"Could not reach {self.base_url}: {exc.reason}", code="network_error"
             ) from exc
-        except (socket.timeout, TimeoutError) as exc:
+        except TimeoutError as exc:
             raise _timeout_error(self.timeout) from exc
         except (OSError, http.client.HTTPException) as exc:
             raise CurlSMSError(
